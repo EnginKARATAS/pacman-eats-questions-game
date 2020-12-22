@@ -3,23 +3,27 @@ let score = 0;
 let pacman;
 //let questions = [];
 let questions = [];
-let isInGame = false;
-var timer = 0;
+let isIn = false;
+var timer = 20;
 
 var questionNumber = 0;
 var soruNo = 0;
 
+let inMainGame = true;
+
+
 
 
 function setup() {
-	createCanvas(700, 500);
+	createCanvas(windowWidth,windowHeight*0.98);
 	angleMode(DEGREES);
 	pacman = new Pacman();
 	//	width * 0.1,height * 0.2
-	let soru1 = new Question([[150, 300, "soru1geldi"], [50, 50, "yorum11"], [200, 50, "yorum12"], [350, 50, "yorum13"]]);
-	let soru2 = new Question([[150, 300, "soru2geldi"], [50, 50, "yorum21"], [200, 50, "yorum22"], [350, 50, "yorum23"]]);
-	let soru3 = new Question([[250, 300, "soru3geldi"], [50, 50, "31"], [200, 50, "yorum32"], [350, 50, "yorum33"]]);
-	let soru4 = new Question([[350, 300, "soru4geldi"], [50, 50, "41"], [200, 50, "yorum42"], [350, 50, "yorum43"]]);
+	let displayY = windowHeight*0.12;
+	let soru1 = new Question([[150, 300, "Türkiyenin yüz ölçümü en büyük ilimiz hangisidir?"], [windowWidth*0.1, displayY, "Konya"], [windowWidth*0.3, displayY, "Ankra"],    [windowWidth*0.5, displayY, "Kocaeli"]]);
+	let soru2 = new Question([[150, 300, "Türkiyenin yüz ölçümü ön büyük ilimiz"], [windowWidth*0.1, displayY, "Konya"], [windowWidth*0.3, displayY, "Ankra"], [windowWidth*0.5, displayY, "Kocaeli"]]);
+	let soru3 = new Question([[150, 300, "Türkiyenin yüz ölçümü ön büyük ilimiz"], [windowWidth*0.1, displayY, "Konya"], [windowWidth*0.3, displayY, "Ankra"], [windowWidth*0.5, displayY, "Kocaeli"]]);
+	let soru4 = new Question([[150, 300, "Türkiyenin yüz ölçümü ön büyük ilimiz"], [windowWidth*0.1, displayY, "Konya"], [windowWidth*0.3, displayY, "Ankra"], [windowWidth*0.5, displayY, "Kocaeli"]]);
 
 
 	questions.push(soru1);
@@ -28,12 +32,11 @@ function setup() {
 	questions.push(soru4);
 
 
-
 }
 
 function draw() {
 	//translate(pacman.x,pacman.y);//pacmanı hızlandırıyor neden bilmiyorum
-	background(0);
+	background(240);
 
 
 	//for soru numarası = questionNumber
@@ -49,18 +52,23 @@ function draw() {
 		questions[questionNumber].show(soruTxt, soruX, soruY, commentsQ, commentsX, commentsY, yorum)
 
 
-		if (isCollapses(pacman.x, pacman.y,commentsX,commentsY)) { //if collapse
-			//				pacman.x = 50;
-			//				pacman.y = 200;
-			//				way = 5;
-			//				score++;
-			//				questionNumber++;
-			//				//			questions.splice(a,1);,
-			//	
+		if (isCollapses(pacman.x, pacman.y, commentsX, commentsY)) { //if collapse
+
+			if (commentsQ == "Konya"){
+				score++;
+			}
+			pacman.x = 50;
+			pacman.y = 200;
+			way = 5;
+			timer=20;
+			questionNumber++;
+
 		}
 	}
-
-	pacman.show(isInGame);
+	if(frameCount % 60 == 0){
+	   timer --;
+	   }
+	pacman.show(isIn);
 	pacman.update(way);
 
 

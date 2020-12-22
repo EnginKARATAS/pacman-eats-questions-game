@@ -14,7 +14,7 @@ class Pacman {
 	}
 	eat(pacmanX, pacmanY, dotX, dotY, dotSize) {
 		let distance = dist(pacmanX, pacmanY, dotX, dotY);
- 
+
 
 		if (distance >= 0 && distance < 30) {
 			this.size += dotSize;
@@ -28,7 +28,6 @@ class Pacman {
 
 	}
 	show() {
-
 		//	fill(random(0,255),random(0,255),random(0,255));
 		fill(this.red, this.green, this.blue);
 		//		translate(this.x, this.y)
