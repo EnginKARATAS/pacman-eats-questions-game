@@ -20,23 +20,12 @@ function preload() {
 	song = loadSound('sound/beginning.wav');
 }
 
-function mousePressed() {
  
-}
-
-
-
 function setup() {
 	createCanvas(windowWidth, windowHeight * 0.98);
 	angleMode(DEGREES);
 	song.loop();
 	
-	  
-	 
-		
-	   
-
-
 	pacman = new Pacman();
 	//	width * 0.1,height * 0.2
 	let displayY = windowHeight;
