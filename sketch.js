@@ -15,16 +15,31 @@ let inMainGame = true;
 let playMode = 'sustain';
 let song;
 
-function preload() {
-	//song = loadSound('sound/beginning.wav');
-}
+//fireworks
+const fireworks = [];
+let gravity;
 
- 
+
+
+
+// function preload() {
+// 	song = loadSound('sound/beginning.wav');
+// }
+
+
+
 function setup() {
 	createCanvas(windowWidth, windowHeight * 0.98);
 	angleMode(DEGREES);
-	song.loop();
-	
+
+	//song
+	// song.loop();
+	// song.pause();
+
+	//fireworks
+	gravity = createVector(0, 0.2);
+
+	//default
 	pacman = new Pacman();
 	//	width * 0.1,height * 0.2
 	let displayY = windowHeight;
@@ -54,25 +69,41 @@ function setup() {
 		[windowWidth * 0.4, defaultY, "Yahya Kemal Beyatlı"],
 		[windowWidth * 0.5, defaultY, ""]]);
 
+	let youwon = new Question(
+		[[150, 300, "Tebrikler :) skorunuz: " + score],
+		[windowWidth * 0.1, defaultY, "(bitti cümlesi)"],
+		[windowWidth * 0.4, defaultY, ""],
+		[windowWidth * 0.5, defaultY, ""]]);
+
 
 	questions.push(soru1);
 	questions.push(soru2);
 	questions.push(soru3);
 	questions.push(soru4);
+	questions.push(youwon);
 
 
 }
 
 function draw() {
 	//translate(pacman.x,pacman.y);//pacmanı hızlandırıyor neden bilmiyorum
-	background(240);
+	background(144);
+	colorMode(RGB);
+
 	// c = color('#04052af5');
 	// background(c);
 
-			
- 
+	//fireworks
 
 
+	for (let i = fireworks.length - 1; i >= 0; i--) {
+		fireworks[i].update();
+		fireworks[i].show();
+
+		if (fireworks[i].done()) {
+			fireworks.splice(i, 1);
+		}
+	}
 
 	//for soru numarası = questionNumber
 	for (let yorum = 0; yorum < 3; yorum++) {
@@ -88,8 +119,12 @@ function draw() {
 
 
 		if (isCollapses(pacman.x, pacman.y, commentsX, commentsY)) { //if collapse
-			//song.pause();
-			if (commentsQ == "Konya") {
+
+			if (commentsQ == "Konya" || commentsQ == "Doğu" || commentsQ == "Köpek" || commentsQ == "Mehmet Akif Ersoy") {
+				fireworks.push(new Firework());
+				fireworks.push(new Firework());
+				fireworks.push(new Firework());
+
 				score++;
 			}
 			pacman.x = 50;

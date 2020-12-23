@@ -12,10 +12,12 @@ class Question {
 		 let r = questionNumber*50*0.5;
 		 let g = questionNumber*50;
 		 let b = questionNumber*153;
-		
+		 strokeWeight(0.03);
 		//DİSPLAY QUESTİON
 		fill(r,g,b);
 		textSize(30);
+ 
+		   
 		text(soruTxt, soruX, soruY+150)
 
 		//DİSPLAY COMMENTS
