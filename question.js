@@ -9,12 +9,17 @@ class Question {
 	show(soruTxt, soruX, soruY, commentsQ, commentsX, commentsY) {
 		textSize(30);
 
-		fill(0);
-		textSize(40);
+		 let r = questionNumber*50*0.5;
+		 let g = questionNumber*50;
+		 let b = questionNumber*153;
 		
+		//DİSPLAY QUESTİON
+		fill(r,g,b);
+		textSize(30);
 		text(soruTxt, soruX, soruY+150)
 
-		fill(0, 102, 153);
+		//DİSPLAY COMMENTS
+		fill(r,g,b);
 		text(commentsQ, commentsX, commentsY);
 
 		fill(255, 0,0);
