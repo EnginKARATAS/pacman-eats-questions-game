@@ -14,10 +14,9 @@ let inMainGame = true;
 //sound
 let playMode = 'sustain';
 let song;
-let deger = false;
 
 function preload() {
-	song = loadSound('sound/beginning.wav');
+	//song = loadSound('sound/beginning.wav');
 }
 
  
@@ -89,7 +88,7 @@ function draw() {
 
 
 		if (isCollapses(pacman.x, pacman.y, commentsX, commentsY)) { //if collapse
-			song.pause();
+			//song.pause();
 			if (commentsQ == "Konya") {
 				score++;
 			}
