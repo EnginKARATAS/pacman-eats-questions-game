@@ -6,28 +6,45 @@ class Question {
 		//        this.size = random(5, 20);
 	}
 
+
 	show(soruTxt, soruX, soruY, commentsQ, commentsX, commentsY) {
-		textSize(30);
+		fill(ra, ga, ba);
 
-		 let r = questionNumber*50*0.5;
-		 let g = questionNumber*50;
-		 let b = questionNumber*153;
-		 strokeWeight(0.03);
-		//DİSPLAY QUESTİON
-		fill(r,g,b);
-		textSize(30);
- 
-		   
-		text(soruTxt, soruX, soruY+150)
+		if (corruptTheGame  || questionNumber == 10 ) {
+		fill(ra, ga, ba);
+			textSize(60);
+			text("Oyun Bitti! Skorunuz " + score, windowWidth*0.14, windowHeight/2)
+			text("Yeniden oynamak için F5`e bas", windowWidth*0.14, windowHeight*0.6)
+		}
+		else{
+			textSize(30);
 
-		//DİSPLAY COMMENTS
-		fill(r,g,b);
-		text(commentsQ, commentsX, commentsY);
+			strokeWeight(0);
 
-		fill(255, 0,0);
-		text("Kalan Süre: " + timer, windowWidth * 0.70, 50)
-		textSize(20);
-		text("Skor: " + score, windowWidth * 0.70, 70)
+			//DİSPLAY QUESTİON
+			text(soruTxt, soruX, soruY + 150)
+	
+			//DİSPLAY COMMENTS
+			text(commentsQ, commentsX, commentsY);
+	
+	
+			textSize(20);
+			let isFinalForWidth = 0.70;
+			let isFinalForHeight = 70;
+			let congrat = "Skor: ";
+			if (questionNumber == 10) {
+				textSize(40);
+				isFinalForWidth = 0.35;
+				isFinalForHeight = 150;
+				congrat = "Oyun bitti. Skorunuz: ";
+			}
+			
+			text(congrat + score, windowWidth * isFinalForWidth, 70)
+			text(questionNumber+1+". Soru", windowWidth * 0.70, 90)
+			fill(255,66,0)
+			text("Kalan Süre: " + timer, windowWidth * 0.70, 50)
+			
+		}
 
 	}
 

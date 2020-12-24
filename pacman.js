@@ -14,8 +14,6 @@ class Pacman {
 	}
 	eat(pacmanX, pacmanY, dotX, dotY, dotSize) {
 		let distance = dist(pacmanX, pacmanY, dotX, dotY);
-
-
 		if (distance >= 0 && distance < 30) {
 			this.size += dotSize;
 			return true; //true == shift
@@ -34,11 +32,11 @@ class Pacman {
 		//angleMode(DEGREES);
 		arc(this.x, this.y, this.size, this.size, this.rotation + this.angel - cos(this.angMouth) * this.angel, this.rotation - this.angel + cos(this.angMouth) * this.angel);
 		this.angMouth += 15; //speed mouth
-		fill(0);
+		fill(random(246, 256), random(20, 100), random(0, 13));
 		let biggereye = this.size * 0.02;
-		if (this.size % 100 < 4 && isInGame) {
+		if (this.size == 60 || this.size == 82 && isInGame) {
 			score -= 2;
-			this.size /= 2;
+			this.size *= 1.2;
 			this.red = random(150, 250);
 			this.green = random(150, 250);
 			this.blue = 255;
