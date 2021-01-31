@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <br>
+    <br>
+    <br>
+  <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-9">
+        <form class="myForm" id="myForm">
+            <h2>Eklemek istediğiniz soru</h3>
+    
+                <input type="text" name="question" id="question" placeholder="enter quest">
+                <br>
+                <hr>
+                <h3><b>Şıkları giriniz</b></h3>
+    
+                <input type="text" name="txt_baloon1" id="txt_baloon1" placeholder="Baloon1 Yazısı">
+                <input type="text" name="txt_baloon2" id="txt_baloon2" placeholder="Baloon2 Yazısı">
+                <input type="text" name="txt_baloon3" id="txt_baloon3" placeholder="Baloon3 Yazısı">
+                <h3>Balon 1 doğru mu </h3>
+                <span>Balon doğru ise yandaki kutucuğu işaretleyin --></span>
+                <input type="checkbox" id=cb1 onclick="addToArray()">
+                <br>
+                <hr>
+                <h3>Balon 2 doğru mu </h3>
+                <span>Balon doğru ise yandaki kutucuğu işaretleyin --></span>
+    
+                <input type="checkbox" id=cb2 onclick="addToArray()">
+                <br>
+    
+                <h3>Balon 3 doğru mu </h3>
+                <span>Balon doğru ise yandaki kutucuğu işaretleyin --></span>
+    
+                <input type="checkbox" class="" id=cb3 onclick="addToArray()">
+                <br>
+                <br>
+                <button type="submit" class="btn btn-primary">Soruyu ekle</button>
+        </form>
+    
+
+      </div>
+  </div>    
+    <script>
+        let questionPool = ["Null question"];
+        let baloonPool = ["null  ", "null  ", "null  "];
+        let locationPool = [250, 550, 850];
+        let Baloonpooldatlenght = baloonPool.length;
+        let trueBaloons = [0, 0, 0];
+        function addToArray() {
+ 
+            var checkbox1 = document.getElementById("cb1")
+            var checkbox2 = document.getElementById("cb2")
+            var checkbox3 = document.getElementById("cb3")
+            switch (checkbox1.checked) {
+                case true:
+                    console.log("true check");
+                    trueBaloons[0] = 1
+                    break;
+                case false:
+                    console.log("false check");
+                    trueBaloons[0] = 0
+                    break;
+                default:
+                    break;
+            }
+            switch (checkbox2.checked) {
+                case true:
+                    console.log("true check");
+                    trueBaloons[1] = 1
+                    break;
+                case false:
+                    console.log("false check");
+                    trueBaloons[1] = 0
+                    break;
+                default:
+                    break;
+            }
+            switch (checkbox3.checked) {
+                case true:
+                    console.log("true check");
+                    trueBaloons[2] = 1
+                    break;
+                case false:
+                    console.log("false check");
+                    trueBaloons[2] = 0
+                    break;
+                default:
+                    break;
+            }
+
+        }
+        
+        let latitude = 5
+        let longitude = 10
+
+        const myForm = document.getElementById("myForm");
+        myForm.addEventListener('submit', function (e) {
+
+            e.preventDefault;
+            let x = document.querySelector('form.myForm').elements;
+            questionPool =  x['question'].value;
+            baloonPool[0] = x['txt_baloon1'].value;
+            baloonPool[1] = x['txt_baloon2'].value;
+            baloonPool[2] = x['txt_baloon3'].value;
+            // formData = new FormData(this);
+
+            const data = {questionPool:questionPool, baloonPool:baloonPool,locationPool:locationPool,Baloonpooldatlenght:Baloonpooldatlenght,trueBaloons:trueBaloons} // a simple object
+
+            // const data2 ={ long:4, say:44}
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data) //.stringify: converst a javascript value to json object for sending json
+            }
+            fetch('/api',options)
+        });
+
+    </script>
+
+</body>
+<script src="p5.min.js"></script>
+
+</html>
