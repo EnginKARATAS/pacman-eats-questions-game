@@ -40,20 +40,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     })
 
   })
-  
  
 //**************************************************************** */
-
-
-
-
-
-
-
-
-
-
-
 
     // app.get('/', (req, res) => {
     //   res.sendFile(__dirname +'\\public' +'\\indexs.html')

@@ -5,6 +5,7 @@ let pacman;
 let questions = [];
 let isIn = false;
 var timer = 15;
+let ArrDogrular = [];
 
 //color
 let ra = 255;
@@ -39,6 +40,7 @@ function preload() {
 
 function setup() {
 	createCanvas(windowWidth, windowHeight * 0.98);
+	frameRate(30)
 	angleMode(DEGREES);
 
 
@@ -58,12 +60,20 @@ function setup() {
 		[200, 300, "Türkiyenin yüz ölçümü en büyük ilimiz hangisidir?"],
 		[windowWidth * 0.1, defaultY, "Konya"],
 		[windowWidth * 0.3, defaultY, "Ankra"],
+		[windowWidth * 0.4, defaultY, "Kocaeli"]]);
+	let soru2 = new Question([
+		[200, 300, "Türkiyenin yüz ölçümü en büyük ilimiz hangisidir?"],
+		[windowWidth * 0.1, defaultY, "Konya"],
+		[windowWidth * 0.3, defaultY, "Ankra"],
 		[windowWidth * 0.5, defaultY, "Kocaeli"]]);
 
-	
+	ArrDogrular = ["Konya", "Doğu", "Köpek", "Mehmet Akif Ersoy", "7(Yedi)", "Tibet Takvimi", "Çobanlar", "Köpek", "Sert", "Kabakulak"];
+
+
 
 	questions.push(soru1);
- 
+	questions.push(soru2);
+
 
 
 }
@@ -73,7 +83,7 @@ function draw() {
 	if (!corruptTheGame)
 		background(ra / 2, ga / 2, ba / 2, 60);
 	if (corruptTheGame || questionNumber == 10) {
-		background(0) ;
+		background(0);
 	}
 
 	console.log(pacman.size);
@@ -116,15 +126,15 @@ function draw() {
 		//x2 questionun lenghti  x1,x2,pacx,pacy,y1
 
 		// isCollapsesX(commentsX, commentsX+commentsQ.length * 15,pacman.x,pacman.y,commentsY,commentsQ);
-//(isCollapses(pacman.x, pacman.y, commentsX, commentsY)
-		if (isCollapses(commentsX, commentsX+commentsQ.length * 15,pacman.x,pacman.y,commentsY,commentsQ)) { //if collapse
+		//(isCollapses(pacman.x, pacman.y, commentsX, commentsY)
+		if (isCollapses(commentsX, commentsX + commentsQ.length * 15, pacman.x, pacman.y, commentsY, commentsQ)) { //if collapse
 			//colors
 			ra = random(255);
 			ga = random(255);
 			ba = random(255);
 
-
-			if (commentsQ == "Konya" || commentsQ == "Doğu" || commentsQ == "Köpek" || commentsQ == "Mehmet Akif Ersoy" || commentsQ == "7(Yedi)" || commentsQ == "Tibet Takvimi" || commentsQ == "Çobanlar" || commentsQ == "Köpek" || commentsQ == "Sert" || commentsQ == "Kabakulak") {
+									//commentsQ = answer
+			if (ArrDogrular.includes(commentsQ)) {
 				fireworks.push(new Firework());
 				fireworks.push(new Firework());
 				fireworks.push(new Firework());
