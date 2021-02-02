@@ -186,10 +186,9 @@
 
         myForm.addEventListener('submit', function (e) {
             e.preventDefault;
-            console.log(locations);
 
             let x = document.querySelector('form.myForm').elements;
-            questionPool =  x['question'].value;
+            questionPool = x['question'].value;
             baloonPool[0] = x['txt_baloon1'].value;
             baloonPool[1] = x['txt_baloon2'].value;
             baloonPool[2] = x['txt_baloon3'].value;
@@ -203,18 +202,18 @@
             var yb3 = x['yb3'].value;
             var yb2 = x['yb2'].value;
             var yb1 = x['yb1'].value;
-   
+
             var locations = [[xq1, yq1], [xb1, yb1], [xb2, yb2], [xb3, yb3]]
-console.log(locations);
+            console.log(locations);
             let arrdogrusorular = []
             for (let a = 0; a < 3; a++) {
                 if (trueBaloons[a] == 1) {
-                    arrdogrusorular.push()
+                    arrdogrusorular.push(baloonPool[a])
                 }
             }
             // formData = new FormData(this);
 
-            const data = { questionPool, baloonPool, arrtrueBaloons } // a simple object
+            const data = { questionPool, baloonPool, arrdogrusorular, locations } // a simple object
             // const data2 ={ long:4, say:44}
             const options = {
                 method: 'POST',

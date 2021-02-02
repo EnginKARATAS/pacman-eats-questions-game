@@ -1,3 +1,14 @@
+let data ;
+$.ajax({
+	url: '/products',
+	contentType: 'application/json',
+	success: function (response) 
+	{
+		data = response[0];
+ 
+		console.log(data);
+	}
+})	
 let way = 4; //0:up 1:right 2:down 3:left
 let score = 0;
 let pacman;
@@ -39,6 +50,21 @@ function preload() {
 
 
 function setup() {
+ /*
+ arrdogrusorular: ["Şık 2 Yazısı"]
+baloonPool: (4) ["Şık 1 Yazısı", "Şık 2 Yazısı", "Şık 3 Yazısı", "offset"]
+locations: Array(4)
+0: (2) ["500", "500"]
+1: (2) ["120", "120"]
+2: (2) ["444", "300"]
+3: (2) ["555", "300"]
+length: 4
+__proto__: Array(0)
+questionPool: "enter quest"
+ */
+
+
+
 	createCanvas(windowWidth, windowHeight * 0.98);
 	frameRate(30)
 	angleMode(DEGREES);
@@ -86,8 +112,7 @@ function draw() {
 		background(0);
 	}
 
-	console.log(pacman.size);
-
+ 
 
 	// c = color('#04052af5');
 	// background(c);
