@@ -9,7 +9,7 @@ let pacman;
 let questions = [];
 let isIn = false;
 var timer = 15;
-let trueBaloons = [];
+let trueBaloons = ["🔴<--Başla"];
 
 //color
 let ra = 255;
@@ -62,7 +62,7 @@ function setup() {
 		url: '/products',
 		contentType: 'application/json',
 		success: function (response) {
-			questionlenght = response.length;
+			questionlenght = response.length+1;
 			
 			data = response
 			console.log("recieved data");
@@ -95,15 +95,17 @@ function setup() {
 					)
 
 				)
-				let lastquest = new Question([
-					[200, 300, " "],
-					[120, 100, " "],
-					[400, 100, " "],
-					[680, 100, " "]]);
-			
-				questions.push(lastquest)
+
 
 			}
+			let lastquest = new Question([
+				[200, 300, " "],
+				[120, 100, " "],
+				[400, 100, " "],
+				[680, 100, " "]]
+				);
+		
+			questions.push(lastquest)
 
 
 		}
@@ -112,25 +114,23 @@ function setup() {
 	// ArrDogrular = ["Konya", "Doğu", "Köpek", "Mehmet Akif Ersoy", "7(Yedi)", "Tibet Takvimi", "Çobanlar", "Köpek", "Sert", "Kabakulak"];
 
 	let firsquest = new Question([
-		[200, 300, "Türkiyenin yüz ölçümü en büyük ilimiz hangisidir?"],
-		[120, 100, "Konya"],
-		[400, 100, "Ankra"],
-		[680, 100, "Kocaeli"]]);
+		[200, 200, "Pacman oyununa hoşgeldin"],
+		[400, 400, "Şimdiki amacın zamanında doğru şıkları yemek "],
+		[400, 200, "🔴<--Başla"],
+		[680, 100, ""]]);
 
 	questions.push(firsquest)
 	console.log("all questions");
 	console.log(questions);
-	console.log(trueBaloons);
+
 }
 
 function draw() {
-console.log(questionNumber);
-console.log(questionlenght);
 
 	//translate(pacman.x,pacman.y);//pacmanı hızlandırıyor neden bilmiyorum
 	if (!corruptTheGame)
 		background(ra / 1.5, ga / 1.8, ba / 2, 60);
-	if (corruptTheGame || questionNumber == questionlenght) {
+	if (corruptTheGame || (questionNumber == questionlenght)) {
 		background(0);
 	}
 
@@ -178,15 +178,20 @@ console.log(questionlenght);
 			ra = random(255);
 			ga = random(255);
 			ba = random(255);
-
+ 
 			//commentsQ = answer
 			if (trueBaloons.includes(commentsQ)) {
+				if (trueBaloons.includes("🔴<--Başla")) {
+					
+				}
+				else{
 				fireworks.push(new Firework());
 				fireworks.push(new Firework());
 				fireworks.push(new Firework());
 
 				score += 5;
 				pacman.size += 10;
+				}
 			}
 			else {
 				score -= 2;
