@@ -1,3 +1,5 @@
+let questionlenght;//question number will equal in ajax to incoming database response.lenght 
+
 let data;
 
 let way = 4; //0:up 1:right 2:down 3:left
@@ -16,7 +18,7 @@ let ba = 203;
 
 //timer check
 corruptTheGame = false;
- 
+
 var questionNumber = 0;
 var soruNo = 0;
 
@@ -29,14 +31,14 @@ let song;
 //fireworks
 const fireworks = [];
 let gravity;
- 
+
 function preload() {
 	// song = loadSound('main.wav');
 }
- 
-function setup() {
 
- 
+function setup() {
+	
+
 	createCanvas(windowWidth, windowHeight * 0.98);
 	frameRate(45)
 	angleMode(DEGREES);
@@ -50,6 +52,7 @@ function setup() {
 
 	//default
 	pacman = new Pacman();
+
 	//	width * 0.1,height * 0.2
 	let displayY = windowHeight;
 	let displayX = windowWidth;
@@ -59,6 +62,8 @@ function setup() {
 		url: '/products',
 		contentType: 'application/json',
 		success: function (response) {
+			questionlenght = response.length;
+			
 			data = response
 			console.log("recieved data");
 			console.log(data);
@@ -71,9 +76,10 @@ function setup() {
 				const baloon1XY = response[i].locations[1]
 				const baloon2XY = response[i].locations[2]
 				const baloon3XY = response[i].locations[3]
-				const trueBaloons = response[i].arrdogrusorular//[xxx,yyy,zzz]
-				for (let j = 0; j < trueBaloons.length; j++) {
-					console.log(trueBaloons[j]);
+				const trueBaloonsget = response[i].arrdogrusorular//[xxx,yyy,zzz]
+				for (let j = 0; j < trueBaloonsget.length; j++) {
+					trueBaloons.push(trueBaloonsget[j]);
+
 				}
 
 				questions.push(
@@ -83,14 +89,22 @@ function setup() {
 							[baloon1XY[0], baloon1XY[1], response[0].baloonPool[0]],
 							[baloon2XY[0], baloon2XY[1], response[0].baloonPool[1]],
 							[baloon3XY[0], baloon3XY[1], response[0].baloonPool[2]],
-						]
+						],
+
 
 					)
 
 				)
+				let lastquest = new Question([
+					[200, 300, " "],
+					[120, 100, " "],
+					[400, 100, " "],
+					[680, 100, " "]]);
+			
+				questions.push(lastquest)
 
 			}
-			
+
 
 		}
 	})
@@ -106,18 +120,21 @@ function setup() {
 	questions.push(firsquest)
 	console.log("all questions");
 	console.log(questions);
-
+	console.log(trueBaloons);
 }
 
 function draw() {
+console.log(questionNumber);
+console.log(questionlenght);
+
 	//translate(pacman.x,pacman.y);//pacmanı hızlandırıyor neden bilmiyorum
 	if (!corruptTheGame)
-		background(ra / 2, ga / 2, ba / 2, 60);
-	if (corruptTheGame || questionNumber == 10) {
+		background(ra / 1.5, ga / 1.8, ba / 2, 60);
+	if (corruptTheGame || questionNumber == questionlenght) {
 		background(0);
 	}
 
-
+  
 
 	// c = color('#04052af5');
 	// background(c);
@@ -148,7 +165,6 @@ function draw() {
 		let commentsX = questions[questionNumber].comments[yorum + 1][0];
 		let commentsY = questions[questionNumber].comments[yorum + 1][1];
 		let commentsQ = questions[questionNumber].comments[yorum + 1][2];
-
 		questions[questionNumber].show(soruTxt, soruX, soruY, commentsQ, commentsX, commentsY, yorum)
 
 

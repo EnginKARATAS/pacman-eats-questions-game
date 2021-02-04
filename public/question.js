@@ -31,18 +31,21 @@ class Question {
 			textSize(20);
 			let isFinalForWidth = 0.70;
 			let isFinalForHeight = 70;
+			let locKalanSure =0.70
+
 			let congrat = "Skor: ";
-			if (questionNumber == 10) {
+			if (questionNumber == questionlenght) {
 				textSize(40);
 				isFinalForWidth = 0.35;
 				isFinalForHeight = 150;
 				congrat = "Oyun bitti. Skorunuz: ";
+				locKalanSure = 5;
 			}
 			
 			text(congrat + score, windowWidth * isFinalForWidth, 70)
-			text(questionNumber+1+". Soru", windowWidth * 0.70, 90)
+			text(questionNumber+1+". Soru", windowWidth * locKalanSure, 90)
 			fill(255,66,0)
-			text("Kalan Süre: " + timer, windowWidth * 0.70, 50)
+			text("Kalan Süre: " + timer, windowWidth * locKalanSure, 50)
 			
 		}
 
