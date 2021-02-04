@@ -32,19 +32,18 @@
                     <h2>Eklemek istediğiniz soru</h3>
                         <input type="text" name="question" id="question" value="enter quest" size="46">
                         <span>X</span>
-                        <input type="text" name="xq1" id="xq1" value="500" size="2">
+                        <input type="text" name="xq1" id="xq1" value="200" size="2">
                         <span>Y</span>
-                        <input type="text" name="yq1" id="yq1" value="500" size="2">
+                        <input type="text" name="yq1" id="yq1" value="300" size="2">
 
                         <h2>Şık1</h2>
                         <input type="text" name="txt_baloon1" id="txt_baloon1" value="Şık 1 Yazısı" size="46">
                         <span>X</span>
                         <input type="text" name="xb1" id="xb1" value="120" size="2">
                         <span>Y</span>
-                        <input type="text" name="yb1" id="yb1" value="120" size="2">
+                        <input type="text" name="yb1" id="yb1" value="100" size="2">
 
-
-
+ 
 
 
                 </div>
@@ -52,16 +51,16 @@
                     <h2>Şık2</h2>
                     <input type="text" name="txt_baloon2" id="txt_baloon2" value="Şık 2 Yazısı" size="46">
                     <span>X</span>
-                    <input type="text" name="xb2" id="xb2" value="444" size="2">
+                    <input type="text" name="xb2" id="xb2" value="400" size="2">
                     <span>Y</span>
-                    <input type="text" name="yb2" id="yb2" value="300" size="2">
+                    <input type="text" name="yb2" id="yb2" value="100" size="2">
 
                     <h2>Şık3</h2>
                     <input type="text" name="txt_baloon3" id="txt_baloon3" value="Şık 3 Yazısı" size="46">
                     <span>X</span>
-                    <input type="text" name="xb3" id="xb3" value="555" size="2">
+                    <input type="text" name="xb3" id="xb3" value="880" size="2">
                     <span>Y</span>
-                    <input type="text" name="yb3" id="yb3" value="300" size="2">
+                    <input type="text" name="yb3" id="yb3" value="100" size="2">
 
                     <br>
 
@@ -193,15 +192,14 @@
             baloonPool[1] = x['txt_baloon2'].value;
             baloonPool[2] = x['txt_baloon3'].value;
 
-            var xq1 = x['xq1'].value;
-            var yq1 = x['yq1'].value;
-
-            var xb1 = x['xb1'].value;
-            var xb2 = x['xb2'].value;
-            var xb3 = x['xb3'].value;
-            var yb3 = x['yb3'].value;
-            var yb2 = x['yb2'].value;
-            var yb1 = x['yb1'].value;
+            var xq1 = Number(x['xq1'].value);
+            var yq1 = Number(x['yq1'].value);
+            var xb1 = Number(x['xb1'].value);
+            var xb2 = Number(x['xb2'].value);
+            var xb3 = Number(x['xb3'].value);
+            var yb3 = Number(x['yb3'].value);
+            var yb2 = Number(x['yb2'].value);
+            var yb1 = Number(x['yb1'].value);
 
             var locations = [[xq1, yq1], [xb1, yb1], [xb2, yb2], [xb3, yb3]]
             console.log(locations);

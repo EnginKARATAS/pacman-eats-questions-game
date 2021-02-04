@@ -1,14 +1,5 @@
-let data ;
-$.ajax({
-	url: '/products',
-	contentType: 'application/json',
-	success: function (response) 
-	{
-		data = response[0];
- 
-		console.log(data);
-	}
-})	
+let data;
+
 let way = 4; //0:up 1:right 2:down 3:left
 let score = 0;
 let pacman;
@@ -16,7 +7,7 @@ let pacman;
 let questions = [];
 let isIn = false;
 var timer = 15;
-let ArrDogrular = [];
+let trueBaloons = [];
 
 //color
 let ra = 255;
@@ -25,8 +16,7 @@ let ba = 203;
 
 //timer check
 corruptTheGame = false;
-
-
+ 
 var questionNumber = 0;
 var soruNo = 0;
 
@@ -39,39 +29,21 @@ let song;
 //fireworks
 const fireworks = [];
 let gravity;
-
-
-
-
+ 
 function preload() {
-	song = loadSound('main.wav');
+	// song = loadSound('main.wav');
 }
-
-
-
+ 
 function setup() {
- /*
- arrdogrusorular: ["Şık 2 Yazısı"]
-baloonPool: (4) ["Şık 1 Yazısı", "Şık 2 Yazısı", "Şık 3 Yazısı", "offset"]
-locations: Array(4)
-0: (2) ["500", "500"]
-1: (2) ["120", "120"]
-2: (2) ["444", "300"]
-3: (2) ["555", "300"]
-length: 4
-__proto__: Array(0)
-questionPool: "enter quest"
- */
 
-
-
+ 
 	createCanvas(windowWidth, windowHeight * 0.98);
-	frameRate(30)
+	frameRate(45)
 	angleMode(DEGREES);
 
 
 	//song
-	song.loop();
+	// song.loop();
 
 	//fireworks
 	gravity = createVector(0, 0.2);
@@ -82,25 +54,58 @@ questionPool: "enter quest"
 	let displayY = windowHeight;
 	let displayX = windowWidth;
 	let defaultY = displayY * 0.12
-	let soru1 = new Question([
+
+	$.ajax({
+		url: '/products',
+		contentType: 'application/json',
+		success: function (response) {
+			data = response
+			console.log("recieved data");
+			console.log(data);
+
+			for (let i = 0; i < response.length; i++) {
+
+				const questionXY = response[i].locations[0]
+				//questionlocationXY[0] = X 
+				//questionlocationXY[1] = Y and valid in baloon..
+				const baloon1XY = response[i].locations[1]
+				const baloon2XY = response[i].locations[2]
+				const baloon3XY = response[i].locations[3]
+				const trueBaloons = response[i].arrdogrusorular//[xxx,yyy,zzz]
+				for (let j = 0; j < trueBaloons.length; j++) {
+					console.log(trueBaloons[j]);
+				}
+
+				questions.push(
+					new Question(
+						[
+							[questionXY[0], questionXY[1], response[0].questionPool],
+							[baloon1XY[0], baloon1XY[1], response[0].baloonPool[0]],
+							[baloon2XY[0], baloon2XY[1], response[0].baloonPool[1]],
+							[baloon3XY[0], baloon3XY[1], response[0].baloonPool[2]],
+						]
+
+					)
+
+				)
+
+			}
+			
+
+		}
+	})
+
+	// ArrDogrular = ["Konya", "Doğu", "Köpek", "Mehmet Akif Ersoy", "7(Yedi)", "Tibet Takvimi", "Çobanlar", "Köpek", "Sert", "Kabakulak"];
+
+	let firsquest = new Question([
 		[200, 300, "Türkiyenin yüz ölçümü en büyük ilimiz hangisidir?"],
-		[windowWidth * 0.1, defaultY, "Konya"],
-		[windowWidth * 0.3, defaultY, "Ankra"],
-		[windowWidth * 0.4, defaultY, "Kocaeli"]]);
-	let soru2 = new Question([
-		[200, 300, "Türkiyenin yüz ölçümü en büyük ilimiz hangisidir?"],
-		[windowWidth * 0.1, defaultY, "Konya"],
-		[windowWidth * 0.3, defaultY, "Ankra"],
-		[windowWidth * 0.5, defaultY, "Kocaeli"]]);
+		[120, 100, "Konya"],
+		[400, 100, "Ankra"],
+		[680, 100, "Kocaeli"]]);
 
-	ArrDogrular = ["Konya", "Doğu", "Köpek", "Mehmet Akif Ersoy", "7(Yedi)", "Tibet Takvimi", "Çobanlar", "Köpek", "Sert", "Kabakulak"];
-
-
-
-	questions.push(soru1);
-	questions.push(soru2);
-
-
+	questions.push(firsquest)
+	console.log("all questions");
+	console.log(questions);
 
 }
 
@@ -112,7 +117,7 @@ function draw() {
 		background(0);
 	}
 
- 
+
 
 	// c = color('#04052af5');
 	// background(c);
@@ -158,8 +163,8 @@ function draw() {
 			ga = random(255);
 			ba = random(255);
 
-									//commentsQ = answer
-			if (ArrDogrular.includes(commentsQ)) {
+			//commentsQ = answer
+			if (trueBaloons.includes(commentsQ)) {
 				fireworks.push(new Firework());
 				fireworks.push(new Firework());
 				fireworks.push(new Firework());
