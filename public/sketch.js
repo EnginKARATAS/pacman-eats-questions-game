@@ -33,7 +33,7 @@ const fireworks = [];
 let gravity;
 
 function preload() {
-	// song = loadSound('main.wav');
+	 song = loadSound('main.wav');
 }
 
 function setup() {
@@ -45,7 +45,7 @@ function setup() {
 
 
 	//song
-	// song.loop();
+	song.loop();
 
 	//fireworks
 	gravity = createVector(0, 0.2);
