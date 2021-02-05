@@ -65,8 +65,6 @@ function setup() {
 			questionlenght = response.length + 1;
 
 			data = response
-			console.log("recieved data");
-			console.log(data);
 
 			for (let i = 0; i < response.length; i++) {
 
@@ -115,10 +113,6 @@ function setup() {
 		[680, 100, ""]]);
 
 	questions.push(firsquest)
-	console.log("all questions");
-	console.log(questions);
-	console.log("true baloons");
-	console.log(trueBaloons);
 
 }
 
