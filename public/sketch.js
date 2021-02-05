@@ -108,9 +108,9 @@ function setup() {
 
 	let firsquest = new Question([
 		[200, 200, "Pacman oyununa hoşgeldin"],
-		[400, 400, "Şimdiki amacın zamanında doğru şıkları yemek "],
+		[200, 400, "Şimdiki amacın zamanında doğru şıkları yemek "],
 		[400, 200, "🔴<--Başla"],
-		[680, 100, ""]]);
+		[200, 450, "ok tuşlarıyla ⬅➡⬆⬇ veya W A S D tuşlarıyla oynayabilirsin "]]);
 
 	questions.push(firsquest)
 
@@ -209,16 +209,16 @@ function draw() {
 
 
 function keyPressed() {
-	if (keyCode === UP_ARROW) {
+	if (keyCode === UP_ARROW || keyCode === 87) {
 		way = 0;
 	}
-	if (keyCode === RIGHT_ARROW) {
+	if (keyCode === RIGHT_ARROW || keyCode === 68) {
 		way = 1;
 	}
-	if (keyCode === DOWN_ARROW) {
+	if (keyCode === DOWN_ARROW || keyCode === 83) {
 		way = 2;
 	}
-	if (keyCode === LEFT_ARROW) {
+	if (keyCode === LEFT_ARROW || keyCode === 65) {
 		way = 3;
 	}
 }

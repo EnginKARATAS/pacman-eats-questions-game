@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            margin: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            width: 500px;
+        }
+
+        h3 {
+            font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+        }
+
+        li img {
+            float: left;
+            margin: 0 15px 0 0;
+        }
+
+        li p {
+            font: 200 12px/1.5 Georgia, Times New Roman, serif;
+        }
+
+        li {
+            padding: 10px;
+            overflow: auto;
+        }
+
+        li:hover {
+            background: #eee;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul>
+            {% for item in items %}
+
+            <li>
+                <h2>Sorunun başlığı:</h2>
+                <h3>{{item.questionPool}}</h3>
+                <h5>Sorunun şıkları</h5>
+                <p>{{item.baloonPool}}</p>
+                <h5 style="color:blue">doğru şıklar</h5>
+                <p>{{item.arrdogrusorular}}</p>
+            </li>
+
+            {% endfor %}
+
+        </ul>
+    </div>
+    <a href="/">ana sayfaya dön</a>
+
+</body>
+
+</html>

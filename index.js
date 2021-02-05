@@ -3,11 +3,16 @@ const fs = require('fs') //filestream
 const express = require('express');
 const app = express(); //listining right now
 const port = process.env.PORT || 8000;
+const nunjucks = require('nunjucks');
+
 app.listen(port, () => console.log("listening at 8000")); //3000 de dinleyeceğim
 app.use(express.static('public'));//kullanıcı tarafından erişilebilecek dosya 'public'dir.
 app.use(express.json({ limit: "1mb" }));//server allows json and taken data size max 1mb, If this row not exist it will be undifined for request parameter
 
-
+nunjucks.configure('public',{
+  autoscape: true,
+  express: app
+})
 
 //***DB*********************************************************** */
 const connectionString = 'mongodb+srv://sonaovski:Exo-craft01@cluster0.141km.mongodb.net/revision?retryWrites=true&w=majority';
@@ -21,7 +26,9 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
     app.get('/allquestions',(req, res)=> {
       db.collection('questions').find().toArray()
-      .then(result=>{res.render(result,{name:"enginov"})})
+      .then(result=>{
+        console.log(result);  
+        res.render('allquestions.html',{items:result})})
     })
 
     app.get('/sa', (req, res) => {
