@@ -2,8 +2,8 @@
 const fs = require('fs') //filestream
 const express = require('express');
 const app = express(); //listining right now
-
-app.listen(43696, () => console.log("listening at 3000")); //3000 de dinleyeceğim
+const port = process.env.PORT || 8000;
+app.listen(port, () => console.log("listening at 3000")); //3000 de dinleyeceğim
 app.use(express.static('public'));//kullanıcı tarafından erişilebilecek dosya 'public'dir.
 app.use(express.json({ limit: "1mb" }));//server allows json and taken data size max 1mb, If this row not exist it will be undifined for request parameter
  
