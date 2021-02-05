@@ -37,7 +37,7 @@ function preload() {
 }
 
 function setup() {
-	
+
 
 	createCanvas(windowWidth, windowHeight * 0.98);
 	frameRate(45)
@@ -62,8 +62,8 @@ function setup() {
 		url: '/products',
 		contentType: 'application/json',
 		success: function (response) {
-			questionlenght = response.length+1;
-			
+			questionlenght = response.length + 1;
+
 			data = response
 			console.log("recieved data");
 			console.log(data);
@@ -79,32 +79,27 @@ function setup() {
 				const trueBaloonsget = response[i].arrdogrusorular//[xxx,yyy,zzz]
 				for (let j = 0; j < trueBaloonsget.length; j++) {
 					trueBaloons.push(trueBaloonsget[j]);
-
 				}
-
 				questions.push(
 					new Question(
 						[
-							[questionXY[0], questionXY[1], response[0].questionPool],
-							[baloon1XY[0], baloon1XY[1], response[0].baloonPool[0]],
-							[baloon2XY[0], baloon2XY[1], response[0].baloonPool[1]],
-							[baloon3XY[0], baloon3XY[1], response[0].baloonPool[2]],
+							[questionXY[0], questionXY[1], response[i].questionPool],
+							[baloon1XY[0], baloon1XY[1], response[i].baloonPool[0]],
+							[baloon2XY[0], baloon2XY[1], response[i].baloonPool[1]],
+							[baloon3XY[0], baloon3XY[1], response[i].baloonPool[2]],
 						],
-
-
 					)
-
 				)
-
-
 			}
+
+
 			let lastquest = new Question([
 				[200, 300, " "],
 				[120, 100, " "],
 				[400, 100, " "],
 				[680, 100, " "]]
-				);
-		
+			);
+
 			questions.push(lastquest)
 
 
@@ -122,11 +117,12 @@ function setup() {
 	questions.push(firsquest)
 	console.log("all questions");
 	console.log(questions);
+	console.log("true baloons");
+	console.log(trueBaloons);
 
 }
 
 function draw() {
-
 	//translate(pacman.x,pacman.y);//pacmanı hızlandırıyor neden bilmiyorum
 	if (!corruptTheGame)
 		background(ra / 1.5, ga / 1.8, ba / 2, 60);
@@ -134,7 +130,7 @@ function draw() {
 		background(0);
 	}
 
-  
+
 
 	// c = color('#04052af5');
 	// background(c);
@@ -165,6 +161,7 @@ function draw() {
 		let commentsX = questions[questionNumber].comments[yorum + 1][0];
 		let commentsY = questions[questionNumber].comments[yorum + 1][1];
 		let commentsQ = questions[questionNumber].comments[yorum + 1][2];
+
 		questions[questionNumber].show(soruTxt, soruX, soruY, commentsQ, commentsX, commentsY, yorum)
 
 
@@ -178,19 +175,19 @@ function draw() {
 			ra = random(255);
 			ga = random(255);
 			ba = random(255);
- 
+
 			//commentsQ = answer
 			if (trueBaloons.includes(commentsQ)) {
-				if (trueBaloons.includes("🔴<--Başla")) {
-					
+				if (questionNumber==0) {
+					//Do nothing. question number ++ 
 				}
-				else{
-				fireworks.push(new Firework());
-				fireworks.push(new Firework());
-				fireworks.push(new Firework());
+				else {
+					fireworks.push(new Firework());
+					fireworks.push(new Firework());
+					fireworks.push(new Firework());
 
-				score += 5;
-				pacman.size += 10;
+					score += 5;
+					pacman.size += 10;
 				}
 			}
 			else {
