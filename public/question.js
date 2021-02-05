@@ -10,7 +10,7 @@ class Question {
 	show(soruTxt, soruX, soruY, commentsQ, commentsX, commentsY) {
 		fill(ra, ga, ba);
 
-		if (corruptTheGame  || questionNumber == 10 ) {
+		if (corruptTheGame  || questionNumber == questionlenght ) {
 		fill(ra, ga, ba);
 			textSize(60);
 			text("Oyun Bitti! Skorunuz " + score, windowWidth*0.14, windowHeight/2)
