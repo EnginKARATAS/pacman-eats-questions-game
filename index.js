@@ -1,20 +1,39 @@
-//server codes index.js
- 
 const express = require('express');
 const app = express(); //listining right now
-const port = process.env.PORT || 8000;
 const nunjucks = require('nunjucks');
+const port = process.env.PORT || 8080;
+const server = app.listen(port);
 
-app.listen(port, () => console.log("listening at 8000")); //3000 de dinleyeceğim
-app.use(express.static('public'));//kullanıcı tarafından erişilebilecek dosya 'public'dir.
+app.use(express.static('public'));//client reachs 'public' folder
 app.use(express.json({ limit: "1mb" }));//server allows json and taken data size max 1mb, If this row not exist it will be undifined for request parameter
 
+// Start socket.io
+let socket = require('socket.io');
+// Connect it to the web server
+let io = socket(server);
+// Setup a connection
+io.sockets.on('connection', newConnection);
+
+function newConnection(socket) {
+  console.log("socket id : "+ socket.id);
+  //when mouse message comes, socket.on('mouse',mouseMsg) working
+  socket.on('mouse',mouseMsg)
+
+  function mouseMsg(data){
+    console.log(data);
+    socket.broadcast.emit('mouse',data);
+    //do can be useful for online pacman game?
+    // io.socket.emit('mouse', data)
+  }
+}
+
+//body parsing
 nunjucks.configure('public',{
   autoscape: true,
   express: app
 })
 
-//***DB*********************************************************** */
+//***MONGO-DB*********************************************************** */
 const connectionString = 'mongodb+srv://sonaovski:Exo-craft01@cluster0.141km.mongodb.net/revision?retryWrites=true&w=majority';
 const MongoClient = require('mongodb').MongoClient
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
@@ -68,16 +87,6 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     })
 
   })
-
 //**************************************************************** */
 
-    // app.get('/', (req, res) => {
-    //   res.sendFile(__dirname +'\\public' +'\\indexs.html')
-
-    //   db.collection('questions').find().toArray()
-    //   .then(result => {
-    //     console.log(result);
-    //   })
-    //   .catch(error => {console.log(error)});
-    //   // res.sendFile(__dirname + 'index.html')
-    // })
+   

@@ -1,6 +1,10 @@
-let questionlenght;//question number will equal in ajax to incoming database response.lenght 
 
+//----REST API
+//data coming from server
 let data;
+//question number will equal in ajax to incoming database response.lenght 
+let questionlenght;
+
 
 let way = 4; //0:up 1:right 2:down 3:left
 let score = 0;
@@ -16,19 +20,21 @@ let ra = 255;
 let ga = 244;
 let ba = 203;
 
+//----game continuity controls
+//question 
+var questionNumber = 0;
+//current question
+var soruNo = 0;
+//if in main game 
+let inMainGame = true;
 //timer check
 corruptTheGame = false;
-
-var questionNumber = 0;
-var soruNo = 0;
-
-let inMainGame = true;
 
 //sound
 let playMode = 'sustain';
 let song;
 
-//fireworks
+//fireworks: Thanks-Daniel Shiffman
 const fireworks = [];
 let gravity;
 
@@ -37,20 +43,17 @@ function preload() {
 }
 
 function setup() {
-
-
 	createCanvas(windowWidth, windowHeight * 0.98);
 	frameRate(45)
 	angleMode(DEGREES);
 
-
-	//song
+	//song loop
 	song.loop();
 
 	//fireworks
 	gravity = createVector(0, 0.2);
 
-	//default
+	//default pacman object
 	pacman = new Pacman();
 
 	//	width * 0.1,height * 0.2
@@ -90,7 +93,6 @@ function setup() {
 				)
 			}
 
-
 			let lastquest = new Question([
 				[200, 300, " "],
 				[120, 100, " "],
@@ -114,17 +116,31 @@ function setup() {
 
 	questions.push(firsquest)
 
+
+	socket.on("mouse", (data)=>{
+		console.log(data);
+		fill(255)
+		noStroke();
+		ellipse(data,100,30,30)
+	})
+}
+
+ 
+function mouseDragged(){
+	fill(0)
+	ellipse(mouseX,100,30,30)
+	console.log(mouseX);
+	socket.emit('mouse',mouseX);
 }
 
 function draw() {
+
 	//translate(pacman.x,pacman.y);//pacmanı hızlandırıyor neden bilmiyorum
 	if (!corruptTheGame)
 		background(ra / 1.5, ga / 1.8, ba / 2, 60);
 	if (corruptTheGame || (questionNumber == questionlenght)) {
 		background(0);
 	}
-
-
 
 	// c = color('#04052af5');
 	// background(c);
@@ -134,7 +150,6 @@ function draw() {
 		corruptTheGame = true;
 	else
 		corruptTheGame = false;
-
 
 	//fireworks
 	for (let i = fireworks.length - 1; i >= 0; i--) {
@@ -157,7 +172,6 @@ function draw() {
 		let commentsQ = questions[questionNumber].comments[yorum + 1][2];
 
 		questions[questionNumber].show(soruTxt, soruX, soruY, commentsQ, commentsX, commentsY, yorum)
-
 
 		// console.log(rect(commentsX,commentsY,commentsQ.length*15,-23).pwinMouseX);
 		//x2 questionun lenghti  x1,x2,pacx,pacy,y1
@@ -184,11 +198,12 @@ function draw() {
 					pacman.size += 10;
 				}
 			}
+
 			else {
 				score -= 2;
 				pacman.size -= 2;
-
 			}
+
 			pacman.x = 50;
 			pacman.y = 200;
 			way = 5;
@@ -197,12 +212,13 @@ function draw() {
 
 		}
 	}
+
 	if (frameCount % 60 == 0) {
 		timer--;
 	}
+
 	pacman.show(isIn);
 	pacman.update(way);
-
 
 }
 
