@@ -11,6 +11,7 @@
       margin: 0;  
     }
   </style>
+  <script src="/socket.io/socket.io.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="p5.min.js"></script>
   <script src="p5.sound.min.js"></script>
@@ -23,23 +24,14 @@
 </head>
 
 <body>
-
-  <a style="text-decoration: blink;
-  color: darkred;
-  font-family: cursive;
-  "href="/addquestion.html">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;soru ekle</a>
-  <a style="text-decoration: blink;
-  color: darkred;
-  font-family: cursive;
-  "href="/deleteall">&emsp;tüm soruları sil</a>
-   <a style="text-decoration: blink;
-   color: darkred;
-   font-family: cursive;
-   "href="/allquestions">&emsp;tüm sorular</a>
-    <a style="text-decoration: blink;
-    color: darkred;
-    font-family: cursive;
-    "href="/allquestions">&emsp;hakkımızda</a>
+  <a href="/addquestion.html">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;soru ekle</a>
+  <a href="/deleteall">&emsp;tüm soruları sil</a>
+  <a href="/allquestions">&emsp;tüm sorular</a>
+  <a href="/allquestions">&emsp;hakkımızda</a>
 </body>
+
+<script>
+  var socket = io();
+</script>
 
 </html>

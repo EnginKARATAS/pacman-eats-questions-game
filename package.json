@@ -27,6 +27,7 @@
     "express": "^4.17.1",
     "mongodb": "^3.6.4",
     "nodemon": "^2.0.7",
-    "nunjucks": "^3.2.2"
+    "nunjucks": "^3.2.2",
+    "socket.io": "^3.1.1"
   }
 }

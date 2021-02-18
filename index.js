@@ -1,5 +1,5 @@
 //server codes index.js
-const fs = require('fs') //filestream
+ 
 const express = require('express');
 const app = express(); //listining right now
 const port = process.env.PORT || 8000;
@@ -38,8 +38,6 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
           res.send(result);
         })
     })
-
-
 
     app.post('/api', (req, res) => {
       console.log("api geldi");
