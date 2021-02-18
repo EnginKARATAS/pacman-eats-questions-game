@@ -16,5 +16,5 @@ Thanks for Fireworks:
 Daniel Shiffman
 
 
-![](/readme file/1.png)
+ 
  
