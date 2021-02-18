@@ -116,21 +116,6 @@ function setup() {
 
 	questions.push(firsquest)
 
-
-	socket.on("mouse", (data)=>{
-		console.log(data);
-		fill(255)
-		noStroke();
-		ellipse(data,100,30,30)
-	})
-}
-
- 
-function mouseDragged(){
-	fill(0)
-	ellipse(mouseX,100,30,30)
-	console.log(mouseX);
-	socket.emit('mouse',mouseX);
 }
 
 function draw() {

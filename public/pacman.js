@@ -46,6 +46,9 @@ class Pacman {
 		ellipse(this.x - this.eyeX * biggereye, this.y - this.eyeY * biggereye, 8)
 	}
 	update(way) {
+		
+		socket.emit('user_pacman_rotation',way);
+
 		if (way == 0) {
 			this.y -= 5;
 			this.rotation = 270;
