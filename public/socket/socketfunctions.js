@@ -7,6 +7,9 @@ function mouseDragged(){
 	socket.emit('mouse',mouseX);
 }
 
+socket.on("pacman_object", (data)=>{
+    
+});
  
 socket.on("user_pacman_rotation", (data)=>{
     console.log("serverde bir herhangi client pacmanını oynattı ve baktığı yön =  " + data);

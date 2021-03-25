@@ -39,7 +39,7 @@ const fireworks = [];
 let gravity;
 
 function preload() {
-	 song = loadSound('main.wav');
+	song = loadSound('main.wav');
 }
 
 function setup() {
@@ -171,7 +171,7 @@ function draw() {
 
 			//commentsQ = answer
 			if (trueBaloons.includes(commentsQ)) {
-				if (questionNumber==0) {
+				if (questionNumber == 0) {
 					//Do nothing. question number ++ 
 				}
 				else {

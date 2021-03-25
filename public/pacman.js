@@ -47,7 +47,7 @@ class Pacman {
 	}
 	update(way) {
 		
-		socket.emit('user_pacman_rotation',way);
+		// socket.emit('user_pacman_rotation',way);
 
 		if (way == 0) {
 			this.y -= 5;
