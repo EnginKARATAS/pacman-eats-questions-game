@@ -12,6 +12,13 @@ let socket = require('socket.io');
 // Connect it to the web server
 let io = socket(server);
 
+//body parsing
+nunjucks.configure('public',{
+  autoscape: true,
+  express: app
+})
+
+
 io.sockets.on('connection', newConnection);
 function newConnection(socket) {
   console.log("socket id : "+ socket.id);
@@ -31,11 +38,6 @@ function newConnection(socket) {
   }
 }
 
-//body parsing
-nunjucks.configure('public',{
-  autoscape: true,
-  express: app
-})
 
 //***MONGO-DB*********************************************************** */
 const connectionString = 'mongodb+srv://sonaovski:Exo-craft01@cluster0.141km.mongodb.net/revision?retryWrites=true&w=majority';
