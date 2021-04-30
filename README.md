@@ -1,6 +1,6 @@
-# 
+
 <h1>pacman-p5</h1>
-this is a groving web game project. it`s represent two think : multiplayer game and admin panel.
+# web game project. have dashboard, mongo db, js, p5
 For now, just admin panel and game is ready. I am working with multiplayer version with socket.io
 
 ![pacman game](/readme-files/1.png)
