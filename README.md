@@ -1,6 +1,6 @@
+#web game project. have dashboard, mongo db, js, p5
 
 <h1>pacman-p5</h1>
-# web game project. have dashboard, mongo db, js, p5
 For now, just admin panel and game is ready. I am working with multiplayer version with socket.io
 
 ![pacman game](/readme-files/1.png)
