@@ -198,9 +198,9 @@ function draw() {
 		}
 	}
 
-	if (frameCount % 60 == 0) {
-		timer--;
-	}
+		if (frameCount % 60 == 0) {
+			timer--;
+		}
 
 	pacman.show(isIn);
 	pacman.update(way);
