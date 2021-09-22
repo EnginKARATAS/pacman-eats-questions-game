@@ -11,11 +11,7 @@ https://pacman-eats-questions-p5js.herokuapp.com/
 old version:
 https://enginkaratas.github.io/pacman-p5/
 
-Game:
-Engin Karataş
-
-Thanks for Fireworks:
-Daniel Shiffman
+ 
 
 
  
