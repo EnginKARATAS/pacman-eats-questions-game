@@ -3,6 +3,11 @@
 ## Overview
 Pacman Eats Questions is an interactive web game that combines the classic Pacman gameplay with a fun quiz format. Players navigate through a maze, answering questions and collecting points. The game is designed to be engaging and educational, making it perfect for multiplayer sessions.
 
+
+https://github.com/user-attachments/assets/66b0ba04-c303-4a98-8bf2-b6702f08d31c
+
+
+
 ## Features
 - **Interactive Gameplay**: Use arrow keys or on-screen buttons to control Pacman.
 - **Custom Questions**: Players can add their own questions and answers to the game.
