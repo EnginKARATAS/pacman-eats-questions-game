@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express(); //listining right now
 const nunjucks = require('nunjucks');
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8081;
 const server = app.listen(port);
 
 app.use(express.static('public'));//client reachs 'public' folder
@@ -18,7 +18,12 @@ nunjucks.configure('public',{
   express: app
 })
 
+// Add dotenv to load environment variables
+require('dotenv').config(); // {{ edit_1 }}
 
+// Update the connection string to use the environment variable
+const password = process.env.YOURPASSWORDVARIABLE
+const db = 'mongodb+srv://sonaovski:'+password+'@cluster0.141km.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 io.sockets.on('connection', newConnection);
 function newConnection(socket) {
   console.log("socket id : "+ socket.id);
@@ -40,9 +45,8 @@ function newConnection(socket) {
 
 
 //***MONGO-DB*********************************************************** */
-const connectionString = 'mongodb+srv://sonaovski:Exo-craft01@cluster0.141km.mongodb.net/revision?retryWrites=true&w=majority';
 const MongoClient = require('mongodb').MongoClient
-MongoClient.connect(connectionString, { useUnifiedTopology: true })
+MongoClient.connect(db, { useUnifiedTopology: true })
   .then(client => {
 
     console.log('Connected to Database')
